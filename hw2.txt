@@ -1,0 +1,67 @@
+import math
+import numpy as np
+
+Event1 = ([8, 1, 2], [3, 4, 5], 2.3, 102)
+
+x0 = np.array(Event1[0])
+x1 = np.array(Event1[1])
+
+from scipy.spatial import distance
+dist1 = distance.euclidean(x0, x1)
+
+Eventlog = {'Distance-1': dist1}
+
+
+vdist1 = x1 - x0
+def magnitude(vdist1):
+    return math.sqrt(np.dot(vdist1, vdist1))
+distmag1 = magnitude(vdist1)
+uvector1 = vdist1/distmag1
+
+Eventlog['Unit vector-1'] = uvector1
+
+E1 = Event1[2]*1000000
+Eventlog['Even 1 Energy (eV)'] = E1
+
+"ii. For a single event, not much information, so if I want the values to be 
+immutable, not going to change anything, I'll use tuple, otherwise, set is 
+also fine.(I used dictionary after finishing the calculation because it is convenient to have a key for
+each value)"
+
+
+
+"iii. I chose tuple for multiple events storage as making keys for each value 
+will then become a very time-consuming work, I would rather make each event a
+list, and all events inside the big list called Eventlog_tuple. And I am  not
+going to change the values so tuple is good."
+
+Eventlog_tuple = (([8, 1, 2], [3, 4, 5], 2.3, 102), ([8, 1, 2], [3, 4, 5],
+ 2.3, 102), ([8, 1, 2], [3, 4, 5], 2.3, 102))
+
+iv. 
+a. delta_E56 = Eventlog_all[5][2] - Eventlog_all[4][2] "Energy change between
+event 5 and 6, Eventlog_all is the imaginary list for all events."
+
+b.
+x7 = np.array(Eventlog_all[6][0])
+x8 = np.array(Eventlog_all[7][0])
+
+from scipy.spatial import distance
+dist8 = distance.euclidean(x7, x8)
+
+"The reason why Eventlog_all[x][0] is for Event 1, there is a initial position
+(8, 1, 2), for the rest of the consecutive events, they don't have this element
+in their lists, so [0] stands for event location for all events after event 1."
+
+c.
+k4 = float(Eventlog_all[3][0][2])/(Eventlog_all[3][0][0]*Eventlog_all[3][0][0] +
+Eventlog_all[3][0][1]*Eventlog_all[3][0][1])
+
+k9 = float(Eventlog_all[8][0][2])/(Eventlog_all[8][0][0]*Eventlog_all[8][0][0] +
+Eventlog_all[8][0][1]*Eventlog_all[8][0][1])
+
+4vs9 = k4 > k9
+if 4vs9 == True
+    print('Event 4 is more aligned with z-axis)
+else
+    print('Actually event 9 is.')
